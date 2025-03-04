@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { UncontrolledFlow } from "./components/uncontrolled-flow";
+import { ControlledForm } from "./components/controlled-form";
 import { ControlledFlow } from "./components/controlled-flow";
+import { UncontrolledModal } from "./components/uncontrolled-modal";
+import { ControlledModal } from "./components/controlled-modal";
 
 const StepOne = ({ next }) => {
   return (
@@ -37,17 +40,38 @@ const StepFour = ({ next }) => {
 };
 
 function App() {
+  // const [shouldDisplay,setShouldDisplay] = useState(false)
   const [data, setData] = useState({});
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
 
   const next = (dataFromStep) => {
-    setData(dataFromStep);
+    setData({...data, ...dataFromStep});
     setCurrentStepIndex(currentStepIndex + 1);
   };
 
   return (
     <>
-      <ControlledFlow currentStepIndex={currentStepIndex} onNext={next}>
+    {/* <UncontrolledFlow/> */}
+    {/* <ControlledForm/> */}
+
+    {/* <UncontrolledModal/> */}
+      {/* <h3>I am the body of the Modal</h3>   */}
+    {/* <ControlledModal>
+    </ControlledModal shouldDisplay={shouldDisplay} onClose={() => setShouldDisplay(false)}> */}
+    {/* <button onClick={() => setShouldDisplay(!shouldDisplay)}>{shouldDisplay ? 'Hide modal' :'Display Modal'}</button> */}
+
+    {/* <UncontrolledFlow onDone={data => {
+      console.log(data);
+      alert('yaee, you made it to the final step')
+    }}>
+    <StepOne />
+    <StepTwo />
+    </UncontrolledFlow> */}
+
+      <ControlledFlow currentStepIndex={currentStepIndex} onNext={next} onDone={data => {
+      console.log(data);
+      alert('yaee, you made it to the final step')
+    }}>
         <StepOne />
         <StepTwo />
         {data.age > 25 && <StepThree />}

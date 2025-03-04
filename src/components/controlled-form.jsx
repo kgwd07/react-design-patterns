@@ -12,7 +12,7 @@ export const ControlledForm = () => {
       setError("The name can not be empty");
     } else {
       setError("");
-    }
+    } 
   }, [name]);
 
   return (
